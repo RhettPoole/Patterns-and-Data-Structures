@@ -1,0 +1,38 @@
+defmodule NAME do
+  def start(INITIAL_STATE) do
+    spawn(fn -> loop(INITIAL_STATE) end)
+  end
+
+  defp loop(INITIAL_STATE) do
+    receive do
+      {:ACTION, SENDER, INPUT} ->
+        # PROCESS INPUT + STATE → NEW_RESULT / NEW_STATE
+        NEW_STATE = FUNCTION(STATE, INPUT)
+        send(SENDER, {:result, NEW_STATE})
+        loop(NEW_STATE)
+
+      {:GET_STATE, SENDER} ->
+        send(SENDER, {:state, STATE})
+        loop(STATE)
+    end
+  end
+end
+
+# Example usage:
+pid = NAME.start(SET INITIAL_STATE HERE)
+send(pid, {:ACTION, self(), "some_input"})
+
+receive do
+  {:result, output} ->
+    IO.puts("Updated state: #{output}")
+end
+
+send(pid, {:GET_STATE, self()})
+
+receive do
+  {:state, state} ->
+    IO.puts("Current state: #{state}")
+end
+
+# Give the process a moment to output before script exits
+:timer.sleep(100)

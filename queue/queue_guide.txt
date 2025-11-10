@@ -1,0 +1,86 @@
+Core Queue Functions:
+empty(queue) → Is the queue empty?
+enqueue(queue, element) → Add to the rear.
+dequeue(queue) → Remove from the front.
+head(queue) → See the first element (like peek).
+tail(queue) → See the last element.
+toList(queue) → Convert queue to a list.
+fromList(list) → Convert list to a queue.
+
+## STRUCTURE:
+# A functional queue is a tuple of two lists: {front, rear}
+# - front: elements in correct order
+# - rear: elements added in reverse, to be reversed on dequeue
+
+# Example: An empty queue
+queue = {[front], [rear]}
+
+
+########################
+CORE QUEUE FUNCTIONS
+########################
+
+empty(queue) => true if both front and rear are empty
+empty({[], []}) -> true;
+empty(_) -> false.
+
+enqueue(queue, element) => Add element to rear
+enqueue({[], []}, e) -> {[e], []};
+enqueue({front, rear}, e) -> {front, [e | rear]}.
+
+dequeue(queue) => Remove element from front
+dequeue({[], []}) -> {[], []};
+dequeue({[h | t], rear}) ->
+  case t of
+    [] -> {reverse(rear), []};
+    _  -> {t, rear}
+  end.
+
+# 4. head(queue) => First element (or nil)
+head({[], []}) -> nil;
+head({[], rear}) -> last(rear);
+head({[h | _], _}) -> h.
+
+tail(queue) => Last element (or nil)
+tail({[], []}) -> nil;
+tail({front, []}) -> last(front);
+tail({_, [h | _]}) -> h.
+
+toList(queue) => Convert queue to list
+toList({front, rear}) -> front ++ reverse(rear).
+
+fromList(list) => Convert list to queue
+fromList(list) -> {list, []}.
+
+
+# reverse(queue) => Reverses the order of the queue
+reverse({front, rear}) -> {reverse(rear), reverse(front)}.
+
+# length(queue) => Number of elements in the queue
+length({front, rear}) -> len(front) + len(rear).
+
+
+########################
+TEST CASES
+########################
+
+# Create empty queue
+q0 = {[], []}
+
+# Enqueue elements
+q1 = enqueue(q0, 1)         # => {[1], []}
+q2 = enqueue(q1, 2)         # => {[1], [2]}
+q3 = enqueue(q2, 3)         # => {[1], [3,2]}
+
+# Head and Tail
+head(q3) → 1
+tail(q3) → 3
+
+# Dequeue (removes 1)
+q4 = dequeue(q3)            # => {[rest], [3,2]}
+
+# Convert to list
+toList(q4) → [2, 3]
+
+# Convert back from list
+fromList([4, 5, 6]) → {[4,5,6], []}

@@ -1,0 +1,24 @@
+Time Complexity per Operation
+
+Checking if the queue is empty:
+- O(1), his checks if both the front and rear lists are empty using pattern matching or basic list inspection.
+
+Adding an element (enqueue):
+- O(1), The element is added to the front of the rear list, which is a constant-time operation in singly linked lists.
+
+Removing an element (dequeue):
+- O(1) in the common case, when the front list is not empty.
+
+- O(n) in the worst case, when the front list is empty and the rear list must be reversed to restore the queue.
+
+- Amortized O(1) overall, since the cost of reversing the rear is spread over multiple operations.
+
+Accessing the first element (head):
+- O(1) — The front of the queue is always available at the head of the front list or, in fallback cases, the last of the rear list (which is O(n), but this is rare and only happens if the front is empty).
+
+Accessing the last element (tail):
+- O(1) if the rear list is non-empty (its head is the last element).
+
+- O(n) if the rear is empty and the last element must be retrieved from the end of the front list.
+
+- In general, this is O(n) in the worst case, but O(1) in most practical scenarios where elements are being enqueued frequently.

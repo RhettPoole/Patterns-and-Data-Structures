@@ -1,0 +1,23 @@
+defmodule NAME do
+  def start do
+    spawn(fn -> loop() end)
+  end
+
+  defp loop do
+    receive do
+      {sender, input1, input2} ->
+        result = FUNCTION(input1, input2)
+        send(sender, {:result, result})
+        loop()
+    end
+  end
+end
+
+# Example usage:
+pid = NAME.start()
+send(pid, {self(), "some", "input"})
+
+receive do
+  {:result, output} ->
+    IO.puts("Result: #{output}")
+end
