@@ -22,3 +22,24 @@ Accessing the last element (tail):
 - O(n) if the rear is empty and the last element must be retrieved from the end of the front list.
 
 - In general, this is O(n) in the worst case, but O(1) in most practical scenarios where elements are being enqueued frequently.
+
+Testing if this kind of answer works so we can memorize on the simplest answers, it worked once:
+Check if empty - O(1) 
+Add an element - O(1) 
+Removing/dequeue an element - Amortized O(1) 
+Retrieve head - O(1) 
+Getting the tail - O(1)
+
+** Function definitions **
+Empty? - Checks if the queue has no elements in either the front or rear list 
+Enqueue - Adds a new item to the rear of the list to prepare it for future removal in order. 
+Dequeue - Removes the item at the very front of the list, if the front list becomes empty, it reverses the rear list and moves it to the front. 
+Head - Returns the first item in the queue without removing it, using the front list if available. 
+Tail - Returns the last item in the queue without removing it, using the rear list if it has elements, otherwise checking the end of the font list. 
+To_List - Combines the front list and reversed rear list into a single ordered list of all items in the queue 
+From_list - Takes a standard list of items and creates a queue with all items placed in the front of the list.
+
+** Structuring Question: **
+Can you describe how a queue is represented in terms of its structure? Be sure to use only words, not symbols or code-like notation.
+
+Yes, a queue is made up of two lists - a front and a rear. The front list is ordered properly from items that entered queue first, and includes the "head" of the list at the very front. It is the item that is next to be dequeue'd. The rear list is ordered in reverse, to allow for quick enqueu'ing - as the enqueue operation will add the another item to the very end of the queue. 

@@ -1,0 +1,16 @@
+Dipper Questions / Answers:
+1. Explain the structure
+Each part of a node in a binary search tree contains specific information. The first part holds a single value, which is used to determine how the other parts are organized. The second part holds another entire section of the tree, made up of values that are smaller than the value in the first part. The third part holds a different section of the tree, made up of values that are larger than the value in the first part. If there are no smaller or larger values, those parts are simply empty.
+
+2. How does adding and checking a value in a BST work?
+Adding a value:
+When adding a new value, begin by comparing it with the value at the very top of the structure. If the new value is smaller, it will be added to the part that holds small values and continue the comparison there. If it is larger, it will be added to the part that holds larger values. This repeats until you reach an empty spot where the new value is placed. The goal is to keep smaller and larger values separated from each other.
+
+Checking if a value exists:
+To check for a value, you start at the top of the structure and compare the target value with the current one. If it matches the value is found. If the target is smaller, you move to the side holding the smaller values, if it is larger, you move the side holding the larger values. Repeat this until the value is either found or we reach an empty part. This would mean that the value is not in the structure.
+
+3. Time Complexity?
+The time complexity of each function in a binary search tree depends, whether adding a value or checking for a value, depends on the height of the tree. In the best case when the tree is well balanced, the work need increases at a rate of O(log n). In the worst case, when the tree is unbalanced and behaves more like a long chain, the height can grow as large as the number of stored values. This causes the work need to increase at a rate of linear time or O(n).
+
+If simple version of question: 
+If the tree is balanced, both functions are O(log n). If the tree is unbalanced and shaped more like a chain, both functions are O(n)
