@@ -1,0 +1,10 @@
+1. Describe structure of single unit in a trie. What makes it diff from other structures?
+- A node in a trie has two parts: one that tells whether a complete sequence ends there, and another that holds the possible next parts of the sequence. Unlike other structures, it doesn’t store just a single value — it stores a decision point and a map of next steps. This makes tries great for working with prefixes and fast lookups.
+
+2. Describe three trie operations, check/add/build-path
+Check: Starts at the top and follows each part of the sequence step by step. If it reaches the end and a marker shows it's complete, the sequence is found. If any part is missing, it’s not there. 
+Add: Goes through each part of the sequence, using existing paths if they exist or creating new ones if they don’t. At the end, it marks the sequence as complete. 
+Build new path: For a brand-new sequence, it creates a fresh path from the top, step by step, linking each part. At the end, it marks the full sequence as valid.
+
+3. Time complexity for those three operations?
+- All operations have a time complexity of O(n). This means that the time complexity depends on the number of parts in the sequence (like the number of letters in a word). It does not depend on the total number of sequences stored in the trie.
