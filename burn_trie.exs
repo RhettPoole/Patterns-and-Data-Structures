@@ -55,7 +55,8 @@ do: Map.delete(c, h), else: Map.put(c, h, updated)
       else: List.flatten(words)
   end
 
-  def from_list(list), do: Enum.reduce(list, new(), &add(&2, &1))
+  def from_list(list), 
+    do: Enum.reduce(list, new(), &add(&2, &1))
 end
 
 # -----------------------
