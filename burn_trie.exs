@@ -49,8 +49,10 @@ do: Map.delete(c, h), else: Map.put(c, h, updated)
   def to_list(trie), do: collect(trie, [])
 
   defp collect(%{end?: e, children: c}, acc) do
-    words = for {ch, sub} <- c, into: [], do: collect(sub, acc ++ [ch])
-    if e, do: [acc | List.flatten(words)], else: List.flatten(words)
+    words = for {ch, sub} <- c, into: [], 
+      do: collect(sub, acc ++ [ch])
+    if e, do: [acc | List.flatten(words)], 
+      else: List.flatten(words)
   end
 
   def from_list(list), do: Enum.reduce(list, new(), &add(&2, &1))
