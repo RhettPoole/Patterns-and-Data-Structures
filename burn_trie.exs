@@ -1,7 +1,8 @@
 defmodule Trie do
   def new, do: %{end?: false, children: %{}}
 
-  def empty?(%{end?: false, children: c}), do: map_size(c) == 0
+  def empty?(%{end?: false, children: c}), 
+    do: map_size(c) == 0
   def empty?(_), do: false
 
   def add(trie, []), do: %{trie | end?: true}
@@ -29,7 +30,8 @@ defmodule Trie do
 
       sub ->
         updated = remove(sub, t)
-        new_c = if empty?(updated), do: Map.delete(c, h), else: Map.put(c, h, updated)
+        new_c = if empty?(updated), 
+do: Map.delete(c, h), else: Map.put(c, h, updated)
         %{trie | children: new_c}
     end
   end
