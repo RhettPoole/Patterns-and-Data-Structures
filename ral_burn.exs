@@ -74,7 +74,8 @@ defmodule RAL do
 
   # Build a RAL from a regular list.
   def from_list(list), do:
-  Enum.reduce(Enum.reverse(list), [], fn x, acc -> cons(x, acc) end)
+  Enum.reduce(Enum.reverse(list),
+  [], fn x, acc -> cons(x, acc) end)
 end
 
 # Tests
