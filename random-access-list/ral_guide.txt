@@ -1,0 +1,17 @@
+1. Describe node structure...
+- A Random Access List node is part of a complete binary tree that stores data efficiently. Each node holds a value and may include two smaller trees below it. The trees are organized by sizes that double, like powers of two, and each node tracks how many elements it contains. This structure helps the list quickly find or update elements by following the tree sizes.
+
+2. Can you explain how the function that retrieves an element from a Random Access List works? Describe how the function determines where to look and how...
+- To get an element from a Random Access List, the function uses the known sizes of each tree to decide which one holds the element. These sizes follow a pattern like one, two, four, and so on. Once the correct tree is found, the function navigates through it like a binary tree, choosing a direction at each level based on the position. This continues until it reaches the target element.
+
+3. Can you walk me through how the update function works in a Random Access List...
+- The update function in a Random Access List finds which tree contains the element by comparing sizes. After locating the right tree, it navigates through its branches to reach the target position. It then replaces the old value with the new one and rebuilds only the parts of the tree that changed. This keeps the rest of the structure efficient and unchanged.
+
+4. Describe how the function that adds an element to the front works. Then explain how the function that removes the first element works...
+- To add an element to the front of a Random Access List, the function checks if the first two trees in the list are the same size. If they are, it combines them with the new element into a larger tree and places it at the front. If not, it simply creates a new small tree with the new element and adds it to the front. To remove the first element, the function takes the first tree from the list and separates the stored element from its child trees. These child trees are then put back into the list so the remaining structure stays valid.
+
+5. Time Complexity / Big O complexity...
+- Adding to the front takes constant time - O(1).
+Looking up an element by index takes logarithmic time - O(log n).
+Updating an element by index also takes logarithmic time - O(log n).
+Removing the first element takes constant time - O(1).
